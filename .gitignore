@@ -1,0 +1,8 @@
+.agent/
+__pycache__/
+*.mp4
+*.png
+venv/
+.vscode/
+.idea/
+pose_landmarker.task
