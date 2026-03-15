@@ -5,7 +5,7 @@ import numpy as np
 from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 from mediapipe.tasks.python.vision import PoseLandmarker, PoseLandmarkerOptions, RunningMode
-from .config import SPATIAL_ORDER_UNIQUE, N_KPS, SKELETON_ONLY_VIDEO_PATH
+from .config import SPATIAL_ORDER_UNIQUE, N_KPS, SKELETON_ONLY_VIDEO_PATH, COMBINED_VIDEO_PATH
 
 class TSSCIProcessor:
     """
@@ -98,7 +98,7 @@ class TSSCIProcessor:
         fourcc = cv2.VideoWriter_fourcc(*"mp4v")
         writer_overlay = cv2.VideoWriter(output_video, fourcc, fps, (frame_w, frame_h)) if output_video else None
         writer_skel_only = cv2.VideoWriter(SKELETON_ONLY_VIDEO_PATH, fourcc, fps, (frame_w, frame_h))
-
+        
         all_people_buffers = [[], [], []]
         frame_count = 0
 
@@ -124,17 +124,18 @@ class TSSCIProcessor:
             annotated_skel = self.draw_skeletons(frame, result, black_bg=True)
             writer_skel_only.write(annotated_skel)
 
-            if preview:
-                cv2.imshow("Multi-Person Tracing (Press q to quit)", annotated_overlay)
-                if cv2.waitKey(1) & 0xFF == ord('q'):
-                    break
-
+            # Data extraction
             people_data = self.extract_all_keypoints(result)
             for i in range(3):
                 if i < len(people_data):
                     all_people_buffers[i].append(people_data[i])
                 else:
                     all_people_buffers[i].append(np.zeros((N_KPS, 3), dtype=np.float32))
+
+            if preview:
+                cv2.imshow("Multi-Person Tracing (Press q to quit)", annotated_overlay)
+                if cv2.waitKey(1) & 0xFF == ord('q'):
+                    break
 
             frame_count += 1
 
@@ -150,4 +151,4 @@ class TSSCIProcessor:
                 tssci = (data * 255).clip(0, 255).astype(np.uint8)
                 tssci_list.append(tssci)
         
-        return tssci_list
+        return tssci_list, fps
