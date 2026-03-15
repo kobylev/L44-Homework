@@ -82,7 +82,7 @@ graph TD
 ---
 
 ## 📸 Sample Outputs
-- **TSSCI Image:** ![tssci.png](assets/tssci.png)
+- **TSSCI Image:** ![tssci.png](assets/tssci_person_1.png)
 - **Skeleton Overlay Video:** [skeleton_overlay.mp4](assets/skeleton_overlay.mp4)
 
 ---
