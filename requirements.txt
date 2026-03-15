@@ -1,0 +1,5 @@
+opencv-python>=4.7.0.72
+mediapipe==0.10.5
+matplotlib>=3.7.1
+numpy>=1.24.3
+protobuf==3.20.3
