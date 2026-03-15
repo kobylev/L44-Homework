@@ -93,6 +93,7 @@ Built with MediaPipe, Python, and a passion for human movement analysis.
 ---
 
 ## 📚 References
+```mermail
 - [MediaPipe Pose Documentation](https://google.github.io/mediapipe/solutions/pose.html)
 - [Action Recognition with CNNs](https://arxiv.org/abs/1705.08168)
     B --> C[Extract Landmarks (X, Y, Visibility)]
