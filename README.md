@@ -6,7 +6,7 @@ This project implements a modular pipeline for multi-person pose extraction, 2D 
 
 ## 🚀 Key Features
 - **Multi-Person Tracking**: Extracts and processes up to 3 people simultaneously from a single video source.
-- **TSSCI (Temporal Spatial Skeleton Color Image)**:
+- **TSSCI (Temporal Spatial Skeleton Color Image)**: 
     - **X-Axis**: Keypoints ordered by kinematic sequence (head → arms → torso → legs).
     - **Y-Axis**: Temporal dimension (frames).
     - **RGB Encoding**: X (Red), Y (Green), Visibility (Blue).
